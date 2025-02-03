@@ -16,12 +16,12 @@ export default function Checkout() {
     try {
       setIsLoading(true);
       let { data } = await axios.post(
-        `https://ecommerce.routemisr.com/api/v1/orders/checkout-${cart.cartId}?url=http://localhost:5173`,
+        `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cart.cartId}?url=http://localhost:5173`,
         { shippingAddress: shippingAddress },
-        { headers: userToken }
+        { headers: { token: userToken } }
       );
-      console.log(data);
-      console.log(cart);
+
+      location.href = data.session.url;
     } catch (error) {
       console.log(error);
       setErrMessage(error.response.data.message);

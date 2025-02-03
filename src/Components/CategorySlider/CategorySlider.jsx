@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import style from "./CategorySlider.module.css";
 import axios from "axios";
 import Slider from "react-slick";
+import useCategories from "../../Hooks/useCategories";
 
 export default function CategorySlider() {
   var settings = {
@@ -15,7 +16,8 @@ export default function CategorySlider() {
     autoplaySpeed: 3000,
   };
 
-  const [categories, setCategories] = useState([]);
+  /*   const [categories, setCategories] = useState([]);
+
   async function getCategories() {
     try {
       let {
@@ -31,21 +33,23 @@ export default function CategorySlider() {
   useEffect(() => {
     getCategories();
   }, []);
+ */
+
+  let { data } = useCategories();
 
   return (
     <>
       <Slider {...settings}>
-        {categories.map((category, index) => {
+        {data?.map((category) => {
           return (
-            <>
+            <React.Fragment key={category._id}>
               <img
                 className="w-full h-56 object-cover object-top"
-                key={index}
                 src={category.image}
                 alt={category.name}
               />
               <h3 className="text-center m-2">{category.name}</h3>
-            </>
+            </React.Fragment>
           );
         })}
       </Slider>

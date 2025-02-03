@@ -1,39 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
 import style from "./RecentProducts.module.css";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import Laoding from "../Laoding/Laoding";
-import { cartContext } from "../../Contexts/CartContext/CartContext";
+import useProducts from "../../Hooks/useProducts";
 
 export default function RecentProducts() {
-  const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const { addProductToCart } = useContext(cartContext);
-
-  async function getProducts() {
-    try {
-      let { data } = await axios.get(
-        "https://ecommerce.routemisr.com/api/v1/products"
-      );
-      setProducts(data.data);
-      setIsLoading(false);
-    } catch (error) {
-      console.error("Error fetching products:", error);
-      setIsLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    getProducts();
-  }, []);
-
+  let { data, isLoading } = useProducts();
   return (
     <>
       {isLoading ? (
         <Laoding />
       ) : (
         <div className="flex flex-wrap py-8 gap-y-4 justify-center">
-          {products.map((product) => (
+          {data.map((product) => (
             <div key={product.id} className="w-1/6">
               <div className="product p-2 rounded">
                 <Link to={`productdetails/${product.id}`}>
