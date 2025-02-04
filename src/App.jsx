@@ -19,6 +19,8 @@ import Checkout from "./Components/Checkout/Checkout.jsx";
 import AllOrders from "./Components/AllOrders/AllOrders.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import WishlistContextProvider from "./Contexts/WishlistContext/WishlistContext.jsx";
+import Wishlist from "./Components/Cart/Wishlist/Wishlist.jsx";
 
 let routers = createBrowserRouter([
   {
@@ -40,6 +42,14 @@ let routers = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Cart />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "wishlist",
+        element: (
+          <ProtectedRoute>
+            <Wishlist />
           </ProtectedRoute>
         ),
       },
@@ -102,12 +112,14 @@ function App() {
     <>
       <QueryClientProvider client={query}>
         <ReactQueryDevtools />
-        <CartContextProvider>
-          <UserTokenContextProvider>
-            <RouterProvider router={routers}></RouterProvider>
-            <Toaster />
-          </UserTokenContextProvider>
-        </CartContextProvider>
+        <WishlistContextProvider>
+          <CartContextProvider>
+            <UserTokenContextProvider>
+              <RouterProvider router={routers}></RouterProvider>
+              <Toaster />
+            </UserTokenContextProvider>
+          </CartContextProvider>
+        </WishlistContextProvider>
       </QueryClientProvider>
     </>
   );

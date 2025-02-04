@@ -3,9 +3,14 @@ import style from "./RecentProducts.module.css";
 import { Link } from "react-router-dom";
 import Laoding from "../Laoding/Laoding";
 import useProducts from "../../Hooks/useProducts";
+import { cartContext } from "../../Contexts/CartContext/CartContext";
+import { wishlistContext } from "../../Contexts/WishlistContext/WishlistContext";
 
 export default function RecentProducts() {
   let { data, isLoading } = useProducts();
+  const { addProductToCart } = useContext(cartContext);
+  const { addProductToWishlist } = useContext(wishlistContext);
+
   return (
     <>
       {isLoading ? (
@@ -36,6 +41,14 @@ export default function RecentProducts() {
                   className="btn w-full"
                 >
                   Add to cart
+                </button>
+                <button
+                  onClick={() => {
+                    addProductToWishlist(product.id);
+                  }}
+                  className="btn w-full  bg-red-500 hover:bg-red-600  focus:ring-red-700"
+                >
+                  Wishlist <i className="fa-regular fa-heart fa-lg"></i>
                 </button>
               </div>
             </div>

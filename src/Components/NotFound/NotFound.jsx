@@ -1,10 +1,13 @@
-import React from 'react'
-import style from './NotFound.module.css'
+import React from "react";
+import style from "./NotFound.module.css";
+import notFound from "../../assets/images/error.svg";
 
 export default function NotFound() {
-  
-  return <>
-    <h2>NotFound</h2>
-  
-  </>
+  return (
+    <>
+      <div className="h-screen flex justify-center items-center">
+        <img src={notFound} alt="Not Found" />
+      </div>
+    </>
+  );
 }

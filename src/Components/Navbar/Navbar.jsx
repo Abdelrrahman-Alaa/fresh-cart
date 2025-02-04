@@ -4,11 +4,13 @@ import logo from "../../assets/images/freshcart-logo.svg";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { userTokenContext } from "../../Contexts/UserTokenContext/UserTokenContext";
 import { cartContext } from "../../Contexts/CartContext/CartContext";
+import { wishlistContext } from "../../Contexts/WishlistContext/WishlistContext";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { userToken, setUserToken } = useContext(userTokenContext);
   const { cart } = useContext(cartContext);
+  const { wishlist } = useContext(wishlistContext);
   let nav = useNavigate();
 
   function logout() {
@@ -68,14 +70,26 @@ export default function Navbar() {
               </NavLink>
             </div>
           )}
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center space-x-3">
+          <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center space-x-5">
             {userToken ? (
               <>
-                <NavLink to={"cart"} className=" font-medium  text-gray-500">
-                  <i className="fas fa-shopping-cart fa-lg mx-1"></i>
-                  {cart?.numOfCartItems}
+                {/* Wishlist Button */}
+                <NavLink to={"wishlist"} className=" font-medium text-gray-500">
+                  {wishlist?.count}
+                  <i className="fa-regular fa-heart fa-lg mx-1"></i>
+                  Wishlist
                 </NavLink>
-                <a onClick={logout} className=" font-medium text-gray-500">
+
+                {/* Cart Button */}
+                <NavLink to={"cart"} className=" font-medium  text-gray-500">
+                  {cart?.numOfCartItems}
+                  <i className="fas fa-shopping-cart fa-lg mx-1"></i>
+                  Cart
+                </NavLink>
+                <a
+                  onClick={logout}
+                  className="hover:text-red-500 font-medium text-gray-500"
+                >
                   Log Out
                 </a>
               </>
@@ -101,7 +115,7 @@ export default function Navbar() {
           <div className="fixed inset-0 z-50" />
           <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
-              <NavLink to={"home"} className="-m-1.5 p-1.5">
+              <NavLink to={"/"} className="-m-1.5 p-1.5">
                 <span className="sr-only">Your Company</span>
                 <img className="" src={logo} width={120} alt="" />
               </NavLink>
@@ -133,30 +147,35 @@ export default function Navbar() {
                 {userToken && (
                   <div className="space-y-2 py-6 capitalize">
                     <NavLink
-                      to={""}
+                      to={"/"}
+                      onClick={() => setIsOpen(false)}
                       className=" block rounded-lg  text-base/7 font-medium text-gray-500 hover:bg-gray-50"
                     >
                       home
                     </NavLink>
                     <NavLink
+                      onClick={() => setIsOpen(false)}
                       to={"cart"}
                       className=" block rounded-lg  text-base/7 font-medium text-gray-500 hover:bg-gray-50"
                     >
                       cart
                     </NavLink>
                     <NavLink
+                      onClick={() => setIsOpen(false)}
                       to={"brands"}
                       className=" block rounded-lg  text-base/7 font-medium text-gray-500 hover:bg-gray-50"
                     >
                       brands
                     </NavLink>
                     <NavLink
+                      onClick={() => setIsOpen(false)}
                       to={"categories"}
                       className=" block rounded-lg  text-base/7 font-medium text-gray-500 hover:bg-gray-50"
                     >
                       categories
                     </NavLink>
                     <NavLink
+                      onClick={() => setIsOpen(false)}
                       to={"products"}
                       className=" block rounded-lg  text-base/7 font-medium text-gray-500 hover:bg-gray-50"
                     >
@@ -166,18 +185,26 @@ export default function Navbar() {
                 )}
                 <div className=" py-6">
                   {userToken ? (
-                    <span className=" block rounded-lg  text-base/7 font-medium text-gray-500 hover:bg-gray-50">
+                    <a
+                      onClick={() => {
+                        setIsOpen(false);
+                        logout();
+                      }}
+                      className=" hover:text-red-500 block rounded-lg  text-base/7 font-medium text-gray-500 hover:bg-gray-50"
+                    >
                       Log Out
-                    </span>
+                    </a>
                   ) : (
                     <>
                       <NavLink
+                        onClick={() => setIsOpen(false)}
                         to={"register"}
                         className=" block rounded-lg  text-base/7 font-medium text-gray-500 hover:bg-gray-50"
                       >
                         Register
                       </NavLink>
                       <NavLink
+                        onClick={() => setIsOpen(false)}
                         to={"login"}
                         className=" block rounded-lg  text-base/7 font-medium text-gray-500 hover:bg-gray-50"
                       >

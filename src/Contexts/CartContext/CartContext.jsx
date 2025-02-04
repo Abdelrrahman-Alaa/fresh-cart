@@ -27,6 +27,7 @@ export default function CartContextProvider({ children }) {
       toast.error(error.message);
     }
   }
+
   async function updateProductCount(productId, count) {
     try {
       let { data } = await axios.put(
@@ -44,6 +45,7 @@ export default function CartContextProvider({ children }) {
       toast.error(error.status);
     }
   }
+
   async function deleteProduct(productId) {
     try {
       let { data } = await axios.delete(
@@ -58,6 +60,7 @@ export default function CartContextProvider({ children }) {
       toast.error(error.status);
     }
   }
+  
   async function getCartProducts() {
     try {
       let { data } = await axios.get(

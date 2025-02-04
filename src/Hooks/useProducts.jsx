@@ -4,28 +4,27 @@ import React from "react";
 
 export default function useProducts() {
   /* const [products, setProducts] = useState([]);
-const [isLoading, setIsLoading] = useState(true);
-const { addProductToCart } = useContext(cartContext);
+  const [isLoading, setIsLoading] = useState(true);
+  const { addProductToCart } = useContext(cartContext);
 
-async function getProducts() {
-  try {
-    let { data } = await axios.get(
-      "https://ecommerce.routemisr.com/api/v1/products"
-    );
-    setProducts(data.data);
-    setIsLoading(false);
-  } catch (error) {
-    console.error("Error fetching products:", error);
-    setIsLoading(false);
+  async function getProducts() {
+    try {
+      let { data } = await axios.get(
+        "https://ecommerce.routemisr.com/api/v1/products"
+      );
+      setProducts(data.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+      setIsLoading(false);
+    }
   }
-}
 
-useEffect(() => {
-  getProducts();
-}, []); 
+  useEffect(() => {
+    getProducts();
+  }, []);
 
-// Old way without reactQuery
-*/
+  // Old way without reactQuery */
 
   function getProducts() {
     return axios.get("https://ecommerce.routemisr.com/api/v1/products");
@@ -41,7 +40,6 @@ useEffect(() => {
     // refetchOnWindowFocus: false,
     select: (data) => data.data.data,
   });
-
 
   return response;
 }

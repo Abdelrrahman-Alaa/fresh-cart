@@ -3,9 +3,13 @@ import style from "./Products.module.css";
 import { Link } from "react-router-dom";
 import Laoding from "../Laoding/Laoding";
 import useProducts from "../../Hooks/useProducts";
+import { cartContext } from "../../Contexts/CartContext/CartContext";
+import { wishlistContext } from "../../Contexts/WishlistContext/WishlistContext";
 
 export default function Products() {
   let { data, isLoading } = useProducts();
+  const { addProductToCart } = useContext(cartContext);
+  const { addProductToWishlist } = useContext(wishlistContext);
 
   return (
     <>
@@ -16,7 +20,7 @@ export default function Products() {
           {data.map((product) => (
             <div key={product.id} className="w-1/6">
               <div className="product p-2 rounded">
-                <Link to={`productdetails/${product.id}`}>
+                <Link to={`/productdetails/${product.id}`}>
                   <img src={product.imageCover} alt={product.title} />
                   <h4 className="text-main text-sm">{product.category.name}</h4>
                   <h4 className="text-xl">
@@ -37,6 +41,14 @@ export default function Products() {
                   className="btn w-full"
                 >
                   Add to cart
+                </button>
+                <button
+                  onClick={() => {
+                    addProductToWishlist(product.id);
+                  }}
+                  className="btn w-full focus:ring-2 focus:ring-red-700"
+                >
+                  Wishlist <i className="fa-regular fa-heart fa-lg"></i>
                 </button>
               </div>
             </div>
