@@ -3,6 +3,7 @@ import style from "./CategorySlider.module.css";
 import axios from "axios";
 import Slider from "react-slick";
 import useCategories from "../../Hooks/useCategories";
+import { Link } from "react-router-dom";
 
 export default function CategorySlider() {
   var settings = {
@@ -83,20 +84,22 @@ export default function CategorySlider() {
 
   return (
     <>
-      <Slider {...settings}>
-        {data?.map((category) => {
-          return (
-            <React.Fragment key={category._id}>
-              <img
-                className="w-full h-56 object-contain md:object-cover object-top"
-                src={category.image}
-                alt={category.name}
-              />
-              <h3 className="text-center m-2">{category.name}</h3>
-            </React.Fragment>
-          );
-        })}
-      </Slider>
+      <Link>
+        <Slider {...settings}>
+          {data?.map((category) => {
+            return (
+              <React.Fragment key={category._id}>
+                <img
+                  className="w-full h-56 object-contain md:object-cover object-top"
+                  src={category.image}
+                  alt={category.name}
+                />
+                <h3 className="text-center m-2">{category.name}</h3>
+              </React.Fragment>
+            );
+          })}
+        </Slider>
+      </Link>
     </>
   );
 }

@@ -6,6 +6,7 @@ import banner2 from "../../assets/images/grocery-banner-2-edit.jpeg";
 import slider1 from "../../assets/images/slider-image-1.jpeg";
 import slider2 from "../../assets/images/slider-image-2.jpeg";
 import slider3 from "../../assets/images/slider-image-3.jpeg";
+import { Link } from "react-router-dom";
 
 export default function MainSlider() {
   var settings = {
@@ -20,7 +21,7 @@ export default function MainSlider() {
   };
   return (
     <>
-      <div className="flex my-2">
+      <Link className="flex my-4">
         <div className="w-3/4">
           <Slider {...settings}>
             <img className="w-full  h-[400px]" src={slider1} alt={"slider1"} />
@@ -32,7 +33,7 @@ export default function MainSlider() {
           <img className="h-[200px]" src={banner1} alt="grocery banner 1" />
           <img className="h-[200px]" src={banner2} alt="grocery banner 1" />
         </div>
-      </div>
+      </Link>
     </>
   );
 }
