@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import style from "./RecentProducts.module.css";
 import { Link } from "react-router-dom";
 import Laoding from "../Laoding/Laoding";
@@ -8,8 +8,14 @@ import { wishlistContext } from "../../Contexts/WishlistContext/WishlistContext"
 
 export default function RecentProducts() {
   let { data, isLoading } = useProducts();
-  const { addProductToCart } = useContext(cartContext);
-  const { addProductToWishlist } = useContext(wishlistContext);
+  const { addProductToCart, getCartProducts } = useContext(cartContext);
+  const { addProductToWishlist, getWishlistProducts } =
+    useContext(wishlistContext);
+
+  useEffect(() => {
+    getCartProducts();
+    getWishlistProducts();
+  });
 
   return (
     <>

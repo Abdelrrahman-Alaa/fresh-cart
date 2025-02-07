@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import RecentProducts from "../RecentProducts/RecentProducts";
-import Slider from "react-slick";
 import MainSlider from "../MainSlider/MainSlider";
 import CategorySlider from "../CategorySlider/CategorySlider";
 
