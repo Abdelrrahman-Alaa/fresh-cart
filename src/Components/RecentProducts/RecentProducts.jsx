@@ -18,7 +18,10 @@ export default function RecentProducts() {
       ) : (
         <div className="flex flex-wrap py-8 gap-y-4 justify-center">
           {data.map((product) => (
-            <div key={product.id} className="w-1/6">
+            <div
+              key={product.id}
+              className="w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 2xl:w-1/6"
+            >
               <div className="product p-2 rounded">
                 <Link to={`productdetails/${product.id}`}>
                   <img src={product.imageCover} alt={product.title} />

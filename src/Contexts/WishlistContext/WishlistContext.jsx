@@ -14,7 +14,6 @@ export default function WishlistContextProvider({ children }) {
 
   // Adding product to wishlist
   async function addProductToWishlist(productId) {
-    
     // Checking if the item in the wishlist or not
     if (isInWishlist(productId)) {
       toast.error("Item already exist");
@@ -67,7 +66,9 @@ export default function WishlistContextProvider({ children }) {
 
   // Getting wishlist products when open
   useEffect(() => {
-    getWishlistProducts();
+    if (localStorage.getItem("userToken")) {
+      getWishlistProducts();
+    }
   }, []);
 
   return (

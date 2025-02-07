@@ -23,7 +23,7 @@ export default function Navbar() {
     <>
       <header className="bg-gray-200 fixed inset-x-0 top-0 z-50">
         <nav
-          className="flex items-center justify-between px-6 py-3 lg:px-8"
+          className="flex items-center justify-between p-6 lg:px-8"
           aria-label="Global"
         >
           <Link to={""} className="lg:pe-4">

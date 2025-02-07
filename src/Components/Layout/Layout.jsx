@@ -7,11 +7,13 @@ import { Outlet } from "react-router-dom";
 export default function Layout() {
   return (
     <>
-      <Navbar />
-      <div className="container mt-4 py-12 ">
-        <Outlet></Outlet>
+      <div className="flex flex-col min-h-screen">
+        <Navbar />
+        <div className="container mt-8 py-12 flex-1">
+          <Outlet />
+        </div>
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 }

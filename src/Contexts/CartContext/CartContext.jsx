@@ -60,7 +60,7 @@ export default function CartContextProvider({ children }) {
       toast.error(error.status);
     }
   }
-  
+
   async function getCartProducts() {
     try {
       let { data } = await axios.get(
@@ -76,7 +76,9 @@ export default function CartContextProvider({ children }) {
   }
 
   useEffect(() => {
-    getCartProducts();
+    if (localStorage.getItem("userToken")) {
+      getCartProducts();
+    }
   }, []);
 
   return (

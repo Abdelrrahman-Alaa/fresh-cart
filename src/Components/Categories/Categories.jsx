@@ -14,7 +14,7 @@ export default function Categories() {
         <div className="flex flex-wrap justify-center ">
           {data?.map((category) => {
             return (
-              <div className="w-1/3 p-6" key={category._id}>
+              <div className="p-6" key={category._id}>
                 <a
                   href="#"
                   className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow-sm md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"

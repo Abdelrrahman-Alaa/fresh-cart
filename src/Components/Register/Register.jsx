@@ -64,7 +64,7 @@ export default function Register() {
     <>
       <h2 className=" text-center my-6">Register</h2>
 
-      <form onSubmit={formik.handleSubmit} className="w-1/2 mx-auto">
+      <form onSubmit={formik.handleSubmit} className="w-1/3 mx-auto">
         {errMessage && (
           <div
             className="px-4 py-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
@@ -86,7 +86,8 @@ export default function Register() {
             value={formik.values.name}
             type="text"
             id="name"
-            autoComplete="name"
+            name="name"
+            // autoComplete="name"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-main focus:border-main block w-full p-2.5
              dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-main dark:focus:border-main"
           />
@@ -112,7 +113,8 @@ export default function Register() {
             value={formik.values.email}
             type="email"
             id="email"
-            autoComplete="email"
+            name="email"
+            // autoComplete="email"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-main focus:border-main block w-full p-2.5
            dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-main dark:focus:border-main"
             placeholder="example@example.com"
@@ -139,7 +141,8 @@ export default function Register() {
             value={formik.values.password}
             type="password"
             id="password"
-            autoComplete="new-password"
+            name="password"
+            // autoComplete="new-password"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-main focus:border-main block w-full p-2.5
            dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-main dark:focus:border-main"
           />
@@ -165,7 +168,8 @@ export default function Register() {
             value={formik.values.rePassword}
             type="password"
             id="rePassword"
-            autoComplete="new-password"
+            name="rePassword"
+            // autoComplete="new-password"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-main focus:border-main block w-full p-2.5
            dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-main dark:focus:border-main"
           />
@@ -191,7 +195,8 @@ export default function Register() {
             value={formik.values.phone}
             type="tel"
             id="phone"
-            autoComplete="tel"
+            name="phone"
+            // autoComplete="tel"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-main focus:border-main block w-full p-2.5
            dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-main dark:focus:border-main"
           />
@@ -209,7 +214,7 @@ export default function Register() {
           <button
             type="button"
             className="text-white bg-main hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full 
-          sm:w-auto px-5 py-2.5 text-center dark:bg-main dark:hover:bg-green-700 dark:focus:ring-green-800"
+           px-5 py-2.5 text-center dark:bg-main dark:hover:bg-green-700 dark:focus:ring-green-800"
           >
             <i className="fa-spin fa-spinner fas"></i>
           </button>
@@ -217,7 +222,7 @@ export default function Register() {
           <button
             type="submit"
             className="text-white bg-main hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full 
-          sm:w-auto px-5 py-2.5 text-center dark:bg-main dark:hover:bg-green-700 dark:focus:ring-green-800"
+           px-5 py-2.5 text-center dark:bg-main dark:hover:bg-green-700 dark:focus:ring-green-800"
           >
             Signup
           </button>

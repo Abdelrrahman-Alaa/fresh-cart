@@ -3,18 +3,18 @@ import style from "./Login.module.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { userTokenContext } from "../../Contexts/UserTokenContext/UserTokenContext";
 
 export default function Login() {
   const [errMessage, setErrMessage] = useState("");
-  const [isLoding, setIsLoding] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   let nav = useNavigate();
   let { setUserToken } = useContext(userTokenContext);
 
   async function handleLogin(values) {
     try {
-      setIsLoding(true);
+      setIsLoading(true);
       let { data } = await axios.post(
         "https://ecommerce.routemisr.com/api/v1/auth/signin",
         values
@@ -25,9 +25,10 @@ export default function Login() {
     } catch (error) {
       console.log(error);
       setErrMessage(error.response.data.message);
-      setIsLoding(false);
+      setIsLoading(false);
     }
   }
+
   let validationSchema = Yup.object().shape({
     email: Yup.string().required("Name is required").email("Email is invalid"),
     password: Yup.string()
@@ -38,20 +39,21 @@ export default function Login() {
       ),
   });
 
-  const formik = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
-    validationSchema, // we can use one word if the property is the same of value
-    onSubmit: handleLogin,
-  });
+  const { handleSubmit, handleChange, handleBlur, errors, touched, values } =
+    useFormik({
+      initialValues: {
+        email: "",
+        password: "",
+      },
+      validationSchema, // we can use one word if the property is the same of value
+      onSubmit: handleLogin,
+    });
 
   return (
     <>
-      <h2>Login</h2>
+      <h2 className="text-center my-12">Login</h2>
 
-      <form onSubmit={formik.handleSubmit} className="w-1/2 mx-auto">
+      <form onSubmit={handleSubmit} className="w-1/3 mx-auto mt-12">
         {errMessage && (
           <div
             className="px-4 py-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
@@ -69,23 +71,24 @@ export default function Login() {
             Your email
           </label>
           <input
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.email}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.email}
             type="email"
             id="email"
-            autoComplete="email"
+            name="email"
+            // autoComplete="email"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-main focus:border-main block w-full p-2.5
            dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-main dark:focus:border-main"
             placeholder="example@example.com"
           />
         </div>
-        {formik.errors.email && formik.touched.email && (
+        {errors.email && touched.email && (
           <div
             className="px-4 py-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
             role="alert"
           >
-            {formik.errors.email}
+            {errors.email}
           </div>
         )}
         <div className="mb-5">
@@ -96,45 +99,34 @@ export default function Login() {
             Your password
           </label>
           <input
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.password}
             type="password"
             id="password"
-            autoComplete="new-password"
+            name="password"
+            // autoComplete="new-password"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-main focus:border-main block w-full p-2.5
            dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-main dark:focus:border-main"
           />
         </div>
-        {formik.errors.password && formik.touched.password && (
+        {errors.password && touched.password && (
           <div
             className="px-4 py-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
             role="alert"
           >
-            {formik.errors.password}
+            {errors.password}
           </div>
         )}
-        <div className="flex items-start mb-5">
-          <div className="flex items-center h-5">
-            <input
-              id="remember"
-              type="checkbox"
-              defaultValue
-              className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
-            />
-          </div>
-          <label
-            htmlFor="remember"
-            className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Remember me
-          </label>
+
+        <div className="hover:underline my-2">
+          <Link to={"/forget-password"}>Forget password?</Link>
         </div>
-        {isLoding ? (
+        {isLoading ? (
           <button
             type="button"
             className="text-white bg-main hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full 
-          sm:w-auto px-5 py-2.5 text-center dark:bg-main dark:hover:bg-green-700 dark:focus:ring-green-800"
+           px-5 py-2.5 text-center dark:bg-main dark:hover:bg-green-700 dark:focus:ring-green-800"
           >
             <i className="fa-spin fa-spinner fas"></i>
           </button>
@@ -142,7 +134,7 @@ export default function Login() {
           <button
             type="submit"
             className="text-white bg-main hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full 
-          sm:w-auto px-5 py-2.5 text-center dark:bg-main dark:hover:bg-green-700 dark:focus:ring-green-800"
+           px-5 py-2.5 text-center dark:bg-main dark:hover:bg-green-700 dark:focus:ring-green-800"
           >
             Login
           </button>
