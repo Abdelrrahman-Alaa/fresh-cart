@@ -8,14 +8,8 @@ import { wishlistContext } from "../../Contexts/WishlistContext/WishlistContext"
 
 export default function RecentProducts() {
   let { data, isLoading } = useProducts();
-  const { addProductToCart, getCartProducts } = useContext(cartContext);
-  const { addProductToWishlist, getWishlistProducts } =
-    useContext(wishlistContext);
-
-  useEffect(() => {
-    getCartProducts();
-    getWishlistProducts();
-  });
+  const { addProductToCart } = useContext(cartContext);
+  const { addProductToWishlist } = useContext(wishlistContext);
 
   return (
     <>

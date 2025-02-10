@@ -3,6 +3,7 @@ import axios from "axios";
 import React from "react";
 
 export default function useProducts() {
+  
   /* const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { addProductToCart } = useContext(cartContext);
