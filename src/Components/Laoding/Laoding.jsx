@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import style from "./Laoding.module.css";
+import { useState } from "react";
 import MoonLoader from "react-spinners/MoonLoader";
 
 const override = {
@@ -8,7 +7,7 @@ const override = {
   borderColor: "red",
 };
 export default function Laoding() {
-  let [loading, setLoading] = useState(true);
+  let [loading] = useState(true);
   return (
     <>
       <div className="flex h-screen justify-center items-center">

@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-import style from "./Login.module.css";
+import { useContext, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
@@ -49,11 +48,13 @@ export default function Login() {
       onSubmit: handleLogin,
     });
 
+  console.log(document.getElementById("root"));
+
   return (
     <>
       <h2 className="text-center my-12">Login</h2>
 
-      <form onSubmit={handleSubmit} className="w-1/3 mx-auto mt-12">
+      <form onSubmit={handleSubmit} className="max-w-md mx-auto mt-12">
         {errMessage && (
           <div
             className="px-4 py-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"

@@ -1,7 +1,5 @@
-import React from "react";
 import "./App.css";
 import {
-  createBrowserRouter,
   createHashRouter,
   RouterProvider,
 } from "react-router-dom";
@@ -24,8 +22,8 @@ import AllOrders from "./Components/AllOrders/AllOrders.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import WishlistContextProvider from "./Contexts/WishlistContext/WishlistContext.jsx";
-import Wishlist from "./Components/Cart/Wishlist/Wishlist.jsx";
-import ForgetPasswors from "./Components/ForgetPassword/ForgetPasswors.jsx";
+import Wishlist from "./Components/Wishlist/Wishlist.jsx";
+import ForgetPassword from "./Components/ForgetPassword/ForgetPasswors.jsx";
 import VerifyCode from "./Components/VerifyResetCode/VerifyResetCode.jsx";
 import ResetPassword from "./Components/ResetPassword/ResetPassword.jsx";
 
@@ -36,7 +34,7 @@ let routers = createHashRouter([
     children: [
       { path: "register", element: <Register /> },
       { path: "login", element: <Login /> },
-      { path: "forget-password", element: <ForgetPasswors /> },
+      { path: "forget-password", element: <ForgetPassword /> },
       { path: "verify-code", element: <VerifyCode /> },
       { path: "reset-password", element: <ResetPassword /> },
       {
@@ -122,14 +120,14 @@ function App() {
     <>
       <QueryClientProvider client={query}>
         <ReactQueryDevtools />
-        <WishlistContextProvider>
-          <CartContextProvider>
-            <UserTokenContextProvider>
+        <UserTokenContextProvider>
+          <WishlistContextProvider>
+            <CartContextProvider>
               <RouterProvider router={routers}></RouterProvider>
               <Toaster />
-            </UserTokenContextProvider>
-          </CartContextProvider>
-        </WishlistContextProvider>
+            </CartContextProvider>
+          </WishlistContextProvider>
+        </UserTokenContextProvider>
       </QueryClientProvider>
     </>
   );

@@ -1,15 +1,26 @@
-import React, { useContext } from "react";
-import { wishlistContext } from "../../../Contexts/WishlistContext/WishlistContext";
-import Laoding from "../../Laoding/Laoding";
-import { Link } from "react-router-dom";
-import { cartContext } from "../../../Contexts/CartContext/CartContext";
+import { useContext } from "react";
+import { wishlistContext } from "../../Contexts/WishlistContext/WishlistContext";
+import Laoding from "../Laoding/Laoding";
+import { Link, useNavigate } from "react-router-dom";
+import { cartContext } from "../../Contexts/CartContext/CartContext";
+import toast from "react-hot-toast";
 
 export default function Wishlist() {
   const { wishlist, deleteProduct } = useContext(wishlistContext);
-  const { addProductToCart } = useContext(cartContext);
+  const { addProductToCart, cart } = useContext(cartContext);
+  const nav = useNavigate();
 
   // Calculate products total price
   const totalPrice = wishlist?.data.reduce((acc, item) => acc + item.price, 0);
+
+  function handleCheckout() {
+    if (!cart.numOfCartItems == 0) {
+      nav("/checkout");
+    } else {
+      toast.error("The cart is empty");
+    }
+  }
+
   return (
     <>
       {wishlist ? (
@@ -69,7 +80,7 @@ export default function Wishlist() {
                   <td className="px-6 py-4">
                     <button
                       onClick={() => deleteProduct(item.id)}
-                      href="#"
+                      href="#"  
                       className="font-medium bg-transparent hover:bg-transparent text-red-600 dark:text-red-500 hover:underline focus:ring-1 focus:ring-red-700"
                     >
                       Remove
@@ -97,7 +108,7 @@ export default function Wishlist() {
                 <td className=" py-3  ">{totalPrice} EGP</td>
                 <td className="px-6 py-3"></td>
                 <td className="px-6 py-3">
-                  <Link to={"/checkout"}>
+                  <Link onClick={handleCheckout}>
                     <button type="button" className="font-normal text-lg ">
                       Checkout
                     </button>

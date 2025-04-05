@@ -1,5 +1,3 @@
-import React from "react";
-import style from "./Footer.module.css";
 import logo from "../../assets/images/freshcart-logo.svg";
 
 export default function Footer() {
@@ -40,7 +38,7 @@ export default function Footer() {
           </div>
           <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
           <span className="block text-sm text-gray-500 text-center dark:text-gray-400">
-            © 2023{" "}
+            © 2025{" "}
             <a href="https://flowbite.com/" className="hover:underline">
               Freshcart™
             </a>

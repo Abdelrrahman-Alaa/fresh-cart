@@ -1,12 +1,15 @@
 import axios from "axios";
-import React, { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { userTokenContext } from "../UserTokenContext/UserTokenContext";
 
 export let wishlistContext = createContext();
 
 export default function WishlistContextProvider({ children }) {
   const [wishlist, setWishlist] = useState(null);
-  const headers = { token: localStorage.getItem("userToken") };
+  const { userToken } = useContext(userTokenContext);
+
+  const headers = { token: userToken };
 
   function isInWishlist(productId) {
     return wishlist?.data.some((item) => item.id === productId);
@@ -64,12 +67,13 @@ export default function WishlistContextProvider({ children }) {
     }
   }
 
-  // Getting wishlist products when open
+  // Getting wishlist products when open &nlogin
+
   useEffect(() => {
-    if (localStorage.getItem("userToken")) {
+    if (userToken) {
       getWishlistProducts();
     }
-  }, []);
+  }, [userToken]);
 
   return (
     <>

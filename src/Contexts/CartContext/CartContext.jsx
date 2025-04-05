@@ -1,13 +1,15 @@
 import axios from "axios";
-import React, { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { userTokenContext } from "../UserTokenContext/UserTokenContext";
 
 export let cartContext = createContext();
 
 export default function CartContextProvider({ children }) {
   const [cart, setCart] = useState(null);
+  const { userToken } = useContext(userTokenContext);
   const headers = {
-    token: localStorage.getItem("userToken"),
+    token: userToken,
   };
 
   async function addProductToCart(productId) {
@@ -75,11 +77,13 @@ export default function CartContextProvider({ children }) {
     }
   }
 
+  // Getting cart products when open &nlogin
+
   useEffect(() => {
-    if (localStorage.getItem("userToken")) {
+    if (userToken) {
       getCartProducts();
     }
-  }, []);
+  }, [userToken]);
 
   return (
     <cartContext.Provider

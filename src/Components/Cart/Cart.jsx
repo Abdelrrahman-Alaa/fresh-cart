@@ -1,11 +1,20 @@
-import React, { useContext, useState } from "react";
-import style from "./Cart.module.css";
+import { useContext } from "react";
 import { cartContext } from "../../Contexts/CartContext/CartContext";
 import Laoding from "../Laoding/Laoding";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export default function Cart() {
   const { cart, updateProductCount, deleteProduct } = useContext(cartContext);
+  const nav = useNavigate();
+
+  function handleCheckout() {
+    if (!cart.numOfCartItems == 0) {
+      nav("/checkout");
+    } else {
+      toast.error("The cart is empty");
+    }
+  }
 
   return (
     <>
@@ -128,7 +137,7 @@ export default function Cart() {
                 <td className="px-6 py-3"></td>
                 <td className=" py-3  ">{cart.data.totalCartPrice} EGP</td>
                 <td className="px-6 py-3">
-                  <Link to={"/checkout"}>
+                  <Link onClick={handleCheckout}>
                     <button type="button" className="font-normal text-lg ">
                       Checkout
                     </button>

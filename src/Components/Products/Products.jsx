@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import style from "./Products.module.css";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import Laoding from "../Laoding/Laoding";
 import useProducts from "../../Hooks/useProducts";
@@ -20,10 +19,10 @@ export default function Products() {
           {data.map((product) => (
             <div
               key={product.id}
-              className="w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 2xl:w-1/6 "
+              className="sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 2xl:w-1/6 "
             >
               <div className="product p-2 rounded">
-                <Link to={`/productdetails/${product.id}`}>
+                <Link to={`productdetails/${product.id}`}>
                   <img src={product.imageCover} alt={product.title} />
                   <h4 className="text-main text-sm">{product.category.name}</h4>
                   <h4 className="text-xl">

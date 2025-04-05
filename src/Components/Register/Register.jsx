@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-import style from "./Register.module.css";
+import { useContext, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
@@ -13,8 +12,8 @@ export default function Register() {
   let { setUserToken } = useContext(userTokenContext);
 
   async function handleRegister(values) {
+    setIsLoding(true);
     try {
-      setIsLoding(true);
       let { data } = await axios.post(
         "https://ecommerce.routemisr.com/api/v1/auth/signup",
         values
@@ -28,6 +27,7 @@ export default function Register() {
       setIsLoding(false);
     }
   }
+
   let validationSchema = Yup.object().shape({
     name: Yup.string()
       .required("Name is required")
@@ -64,7 +64,7 @@ export default function Register() {
     <>
       <h2 className=" text-center my-6">Register</h2>
 
-      <form onSubmit={formik.handleSubmit} className="w-1/3 mx-auto">
+      <form onSubmit={formik.handleSubmit} className="max-w-md  mx-auto">
         {errMessage && (
           <div
             className="px-4 py-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"

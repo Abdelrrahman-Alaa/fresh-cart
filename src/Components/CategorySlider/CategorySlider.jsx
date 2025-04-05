@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
-import style from "./CategorySlider.module.css";
-import axios from "axios";
 import Slider from "react-slick";
 import useCategories from "../../Hooks/useCategories";
 import { Link } from "react-router-dom";
+import React from "react";
 
 export default function CategorySlider() {
   var settings = {
@@ -11,7 +9,7 @@ export default function CategorySlider() {
     infinite: true,
     speed: 500,
     slidesToShow: 6,
-    slidesToScroll: 3,
+    slidesToScroll: 2,
     arrows: false,
     autoplay: true,
     autoplaySpeed: 3000,
@@ -49,6 +47,7 @@ export default function CategorySlider() {
           slidesToShow: 2,
           slidesToScroll: 1,
           initialSlide: 2,
+          dots: false,
         },
       },
       {
@@ -56,6 +55,7 @@ export default function CategorySlider() {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          dots: false,
         },
       },
     ],

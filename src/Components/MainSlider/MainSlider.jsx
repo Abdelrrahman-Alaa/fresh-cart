@@ -1,5 +1,3 @@
-import React from "react";
-import style from "./MainSlider.module.css";
 import Slider from "react-slick";
 import banner1 from "../../assets/images/grocery-banner-edit.png";
 import banner2 from "../../assets/images/grocery-banner-2-edit.jpeg";
@@ -22,16 +20,36 @@ export default function MainSlider() {
   return (
     <>
       <Link className="flex my-4">
-        <div className="w-3/4">
+        <div className="w-full md:w-3/4">
           <Slider {...settings}>
-            <img className="w-full  h-[400px]" src={slider1} alt={"slider1"} />
-            <img className="w-full  h-[400px]" src={slider2} alt={"slider2"} />
-            <img className="w-full  h-[400px]" src={slider3} alt={"slider3"} />
+            <img
+              className="w-full object-cover h-[150px] md:h-[300px]"
+              src={slider1}
+              alt={"slider1"}
+            />
+            <img
+              className="w-full object-cover  h-[150px] md:h-[300px]"
+              src={slider2}
+              alt={"slider2"}
+            />
+            <img
+              className="w-full object-cover h-[150px] md:h-[300px]"
+              src={slider3}
+              alt={"slider3"}
+            />
           </Slider>
         </div>
-        <div className="w-1/4">
-          <img className="h-[200px]" src={banner1} alt="grocery banner 1" />
-          <img className="h-[200px]" src={banner2} alt="grocery banner 1" />
+        <div className="hidden md:w-1/4 md:block">
+          <img
+            className="h-[150px] object-cover w-full"
+            src={banner1}
+            alt="grocery banner 1"
+          />
+          <img
+            className="h-[150px] object-cover w-full"
+            src={banner2}
+            alt="grocery banner 1"
+          />
         </div>
       </Link>
     </>

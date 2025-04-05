@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-import style from "./Navbar.module.css";
+import { useContext, useState } from "react";
 import logo from "../../assets/images/freshcart-logo.svg";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { userTokenContext } from "../../Contexts/UserTokenContext/UserTokenContext";
@@ -23,7 +22,7 @@ export default function Navbar() {
     <>
       <header className="bg-gray-200 fixed inset-x-0 top-0 z-50">
         <nav
-          className="flex items-center justify-between p-6 lg:px-8"
+          className="flex items-center justify-between p-4 lg:px-8"
           aria-label="Global"
         >
           <Link to={""} className="lg:pe-4">
@@ -55,17 +54,20 @@ export default function Navbar() {
           </div>
           {userToken && (
             <div className="hidden lg:flex lg:gap-x-2 capitalize">
-              <NavLink to={""} className=" font-medium text-gray-500">
+              <NavLink to={"/"} className=" font-medium text-gray-500">
                 home
               </NavLink>
 
-              <NavLink to={"brands"} className=" font-medium text-gray-500">
+              <NavLink to={"/brands"} className=" font-medium text-gray-500">
                 brands
               </NavLink>
-              <NavLink to={"categories"} className=" font-medium text-gray-500">
+              <NavLink
+                to={"/categories"}
+                className=" font-medium text-gray-500"
+              >
                 categories
               </NavLink>
-              <NavLink to={"products"} className=" font-medium text-gray-500">
+              <NavLink to={"/products"} className=" font-medium text-gray-500">
                 products
               </NavLink>
             </div>
@@ -74,14 +76,17 @@ export default function Navbar() {
             {userToken ? (
               <>
                 {/* Wishlist Button */}
-                <NavLink to={"wishlist"} className=" font-medium text-gray-500">
+                <NavLink
+                  to={"/wishlist"}
+                  className=" font-medium text-gray-500"
+                >
                   {wishlist?.count}
                   <i className="fa-regular fa-heart fa-lg mx-1"></i>
                   Wishlist
                 </NavLink>
 
                 {/* Cart Button */}
-                <NavLink to={"cart"} className=" font-medium  text-gray-500">
+                <NavLink to={"/cart"} className=" font-medium  text-gray-500">
                   {cart?.numOfCartItems}
                   <i className="fas fa-shopping-cart fa-lg mx-1"></i>
                   Cart
@@ -95,10 +100,13 @@ export default function Navbar() {
               </>
             ) : (
               <>
-                <NavLink to={"register"} className=" font-medium text-gray-500">
+                <NavLink
+                  to={"/register"}
+                  className=" font-medium text-gray-500"
+                >
                   Register
                 </NavLink>
-                <NavLink to={"login"} className=" font-medium text-gray-500">
+                <NavLink to={"/login"} className=" font-medium text-gray-500">
                   Login <span aria-hidden="true">→</span>
                 </NavLink>
               </>
@@ -155,28 +163,28 @@ export default function Navbar() {
                     </NavLink>
                     <NavLink
                       onClick={() => setIsOpen(false)}
-                      to={"cart"}
+                      to={"/cart"}
                       className=" block rounded-lg  text-base/7 font-medium text-gray-500 hover:bg-gray-50"
                     >
                       cart
                     </NavLink>
                     <NavLink
                       onClick={() => setIsOpen(false)}
-                      to={"brands"}
+                      to={"/brands"}
                       className=" block rounded-lg  text-base/7 font-medium text-gray-500 hover:bg-gray-50"
                     >
                       brands
                     </NavLink>
                     <NavLink
                       onClick={() => setIsOpen(false)}
-                      to={"categories"}
+                      to={"/categories"}
                       className=" block rounded-lg  text-base/7 font-medium text-gray-500 hover:bg-gray-50"
                     >
                       categories
                     </NavLink>
                     <NavLink
                       onClick={() => setIsOpen(false)}
-                      to={"products"}
+                      to={"/products"}
                       className=" block rounded-lg  text-base/7 font-medium text-gray-500 hover:bg-gray-50"
                     >
                       products
@@ -198,14 +206,14 @@ export default function Navbar() {
                     <>
                       <NavLink
                         onClick={() => setIsOpen(false)}
-                        to={"register"}
+                        to={"/register"}
                         className=" block rounded-lg  text-base/7 font-medium text-gray-500 hover:bg-gray-50"
                       >
                         Register
                       </NavLink>
                       <NavLink
                         onClick={() => setIsOpen(false)}
-                        to={"login"}
+                        to={"/login"}
                         className=" block rounded-lg  text-base/7 font-medium text-gray-500 hover:bg-gray-50"
                       >
                         Log in <span aria-hidden="true">→</span>

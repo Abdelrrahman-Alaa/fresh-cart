@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useFormik } from "formik";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function ForgetPasswors() {
+export default function ForgetPassword() {
   const [errorMsg, setErrorMsg] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   let nav = useNavigate();
@@ -15,6 +15,7 @@ export default function ForgetPasswors() {
         "https://ecommerce.routemisr.com/api/v1/auth/forgotPasswords",
         values
       );
+      console.log(res);
 
       nav("/verify-code");
     } catch (error) {

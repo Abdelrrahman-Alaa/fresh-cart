@@ -1,5 +1,4 @@
-import React from "react";
-import style from "./Categories.module.css";
+
 import useCategories from "../../Hooks/useCategories";
 import Laoding from "../Laoding/Laoding";
 

@@ -1,23 +1,34 @@
-import React, { useContext, useEffect, useState } from "react";
-import style from "./Checkout.module.css";
+import { useContext, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { cartContext } from "../../Contexts/CartContext/CartContext";
 import { userTokenContext } from "../../Contexts/UserTokenContext/UserTokenContext";
+import toast from "react-hot-toast";
+import { jwtDecode } from "jwt-decode";
 
 export default function Checkout() {
   const [errMessage, setErrMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const { cart } = useContext(cartContext);
+  const { cart, getCartProducts } = useContext(cartContext);
   const { userToken } = useContext(userTokenContext);
+  const [paymentMethod, setPaymentMethod] = useState("cash");
+  const baseURL = window.location.origin;
+  const handlePaymentSuccess = () => {
+    // استخراج الـ base path تلقائيًا
+    const basePath = `/${window.location.pathname.split("/")[1]}`;
+    // بناء رابط التحويل الصحيح
+    const redirectUrl = `${window.location.origin}${basePath}/#/allorders`;
+    // تنفيذ إعادة التوجيه
+    window.location.href = redirectUrl;
+  };
 
-  async function handleCheckout(shippingAddress) {
+  /*   async function handleCheckout(shippingAddress) {
     try {
       setIsLoading(true);
       let { data } = await axios.post(
         `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cart.cartId}?url=http://localhost:5173`,
-        { shippingAddress: shippingAddress },
+        { shippingAddress },
         { headers: { token: userToken } }
       );
 
@@ -25,6 +36,41 @@ export default function Checkout() {
     } catch (error) {
       console.log(error);
       setErrMessage(error.response.data.message);
+      setIsLoading(false);
+    }
+  } */
+
+  async function handleCheckout(shippingAddress) {
+    try {
+      setIsLoading(true);
+
+      if (paymentMethod === "cash") {
+        // تنفيذ الطلب كاش
+        const { data } = await axios.post(
+          `https://ecommerce.routemisr.com/api/v1/orders/${cart.cartId}`,
+          { shippingAddress },
+          { headers: { token: userToken } }
+        );
+        getCartProducts();
+        toast.success("Payment done successfully");
+        formik.resetForm();
+        handlePaymentSuccess();
+      } else {
+        // تنفيذ الطلب عبر الدفع الإلكتروني
+        let { data } = await axios.post(
+          `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cart.cartId}?url=${baseURL}/fresh-cart/#`,
+          { shippingAddress },
+          { headers: { token: userToken } }
+        );
+        formik.resetForm();
+        console.log(data);
+
+        // location.href = data.session.url;
+      }
+    } catch (error) {
+      console.log(error);
+      setErrMessage(error.response?.data?.message || "حدث خطأ ما");
+    } finally {
       setIsLoading(false);
     }
   }
@@ -137,6 +183,47 @@ export default function Checkout() {
             {formik.errors.details}
           </div>
         )}
+
+        {/* Cash or Visa */}
+
+        <fieldset>
+          <legend className="sr-only">Payment option</legend>
+          <div className="flex items-center mb-4">
+            <input
+              id="payment-option-1"
+              type="radio"
+              name="payments"
+              value="cash"
+              checked={paymentMethod === "cash"}
+              onChange={(e) => setPaymentMethod(e.target.value)}
+              className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-green-300 dark:focus:ring-green-600 dark:focus:bg-green-600 dark:bg-gray-700 dark:border-gray-600"
+              // defaultChecked
+            />
+            <label
+              htmlFor="payment-option-1"
+              className="block ms-2  text-sm font-medium text-gray-900 dark:text-gray-300"
+            >
+              Cash on delivery (COD)
+            </label>
+          </div>
+          <div className="flex items-center mb-4">
+            <input
+              id="payment-option-2"
+              type="radio"
+              name="payments"
+              value="visa"
+              checked={paymentMethod === "visa"}
+              onChange={(e) => setPaymentMethod(e.target.value)}
+              className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-green-300 dark:focus:ring-green-600 dark:focus:bg-green-600 dark:bg-gray-700 dark:border-gray-600"
+            />
+            <label
+              htmlFor="payment-option-2"
+              className="block ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+            >
+              Credit/Debit Card
+            </label>
+          </div>
+        </fieldset>
 
         {/* Remember Me */}
         <div className="flex items-center justify-between mb-5">
