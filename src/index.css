@@ -11,6 +11,11 @@
   --font-family: "Encode Sans Expanded", sans-serif;
   --rating-color: #ffc908;
 }
+
+.dark {
+  --main-color: #81e6d9;
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -70,5 +75,19 @@ button {
   @apply px-3.5 py-1.5 mx-1 my-2 rounded-lg bg-green-500 text-white hover:bg-green-600;
 }
 .active {
-  color: var(--main-color);
+  color: var(--main-color) !important;
+}
+
+/* Custom slick-dots styling */
+.slick-dots li button:before {
+  color: #4b5563; /* Gray-600 in light mode */
+}
+
+.dark .slick-dots li button:before {
+  color: #f3f4f6 !important; /* Gray-100 in dark mode */
+}
+
+.slick-dots li.slick-active button:before {
+  opacity: 1;
+  color: var(--main-color) !important; /* Blue-600 for active dot */
 }

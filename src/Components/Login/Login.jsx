@@ -52,7 +52,7 @@ export default function Login() {
 
   return (
     <>
-      <h2 className="text-center my-12">Login</h2>
+      <h2 className="dark:text-gray-100 text-center my-12">Login</h2>
 
       <form onSubmit={handleSubmit} className="max-w-md mx-auto mt-12">
         {errMessage && (
@@ -120,7 +120,7 @@ export default function Login() {
           </div>
         )}
 
-        <div className="hover:underline my-2">
+        <div className="hover:underline my-2 dark:text-gray-100">
           <Link to={"/forget-password"}>Forget password?</Link>
         </div>
         {isLoading ? (

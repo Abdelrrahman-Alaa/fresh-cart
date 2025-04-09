@@ -1,6 +1,10 @@
-import logo from "../../assets/images/freshcart-logo.svg";
+import logoLight from "../../assets/images/freshcart-logo.svg";
+import logoDark from "../../assets/images/freshcart-logo-dark.svg";
+import { useThemeContext } from "../../Contexts/ThemeContext/ThemeContext";
 
 export default function Footer() {
+  const { isDark } = useThemeContext();
+
   return (
     <>
       <footer className="bg-white rounded-lg shadow-sm dark:bg-gray-900 m-4 mb-0">
@@ -10,7 +14,11 @@ export default function Footer() {
               href="https://flowbite.com/"
               className="flex items-center justify-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse"
             >
-              <img src={logo} className="h-8" alt="Flowbite Logo" />
+              <img
+                src={isDark ? logoDark : logoLight}
+                className="h-8"
+                alt="Flowbite Logo"
+              />
               <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
             </a>
             <ul className="flex gap-2 flex-col sm:flex-row flex-wrap items-center mb-6  text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">

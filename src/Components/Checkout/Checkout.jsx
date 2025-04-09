@@ -45,7 +45,6 @@ export default function Checkout() {
       setIsLoading(true);
 
       if (paymentMethod === "cash") {
-        // تنفيذ الطلب كاش
         const { data } = await axios.post(
           `https://ecommerce.routemisr.com/api/v1/orders/${cart.cartId}`,
           { shippingAddress },
@@ -56,7 +55,6 @@ export default function Checkout() {
         formik.resetForm();
         handlePaymentSuccess();
       } else {
-        // تنفيذ الطلب عبر الدفع الإلكتروني
         let { data } = await axios.post(
           `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cart.cartId}?url=${baseURL}/fresh-cart/#`,
           { shippingAddress },
@@ -65,7 +63,7 @@ export default function Checkout() {
         formik.resetForm();
         console.log(data);
 
-        // location.href = data.session.url;
+        location.href = data.session.url;
       }
     } catch (error) {
       console.log(error);

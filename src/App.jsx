@@ -1,8 +1,5 @@
 import "./App.css";
-import {
-  createHashRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import Layout from "./Components/Layout/Layout.jsx";
 import Home from "./Components/Home/Home.jsx";
 import Cart from "./Components/Cart/Cart.jsx";
@@ -26,6 +23,7 @@ import Wishlist from "./Components/Wishlist/Wishlist.jsx";
 import ForgetPassword from "./Components/ForgetPassword/ForgetPasswors.jsx";
 import VerifyCode from "./Components/VerifyResetCode/VerifyResetCode.jsx";
 import ResetPassword from "./Components/ResetPassword/ResetPassword.jsx";
+import { ThemeContextProvider } from "./Contexts/ThemeContext/ThemeContext.jsx";
 
 let routers = createHashRouter([
   {
@@ -117,19 +115,21 @@ let routers = createHashRouter([
 function App() {
   const query = new QueryClient();
   return (
-    <>
-      <QueryClientProvider client={query}>
-        <ReactQueryDevtools />
-        <UserTokenContextProvider>
-          <WishlistContextProvider>
-            <CartContextProvider>
-              <RouterProvider router={routers}></RouterProvider>
-              <Toaster />
-            </CartContextProvider>
-          </WishlistContextProvider>
-        </UserTokenContextProvider>
-      </QueryClientProvider>
-    </>
+    <div className="dark:bg-gray-900">
+      <ThemeContextProvider>
+        <QueryClientProvider client={query}>
+          <ReactQueryDevtools />
+          <UserTokenContextProvider>
+            <WishlistContextProvider>
+              <CartContextProvider>
+                <RouterProvider router={routers}></RouterProvider>
+                <Toaster />
+              </CartContextProvider>
+            </WishlistContextProvider>
+          </UserTokenContextProvider>
+        </QueryClientProvider>
+      </ThemeContextProvider>
+    </div>
   );
 }
 

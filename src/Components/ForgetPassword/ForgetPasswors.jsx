@@ -33,7 +33,7 @@ export default function ForgetPassword() {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="max-w-[50%] mx-auto mt-24">
+      <form onSubmit={handleSubmit} className="h- max-w-[50%] mx-auto mt-24">
         {errorMsg && (
           <div
             className="px-4 py-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"

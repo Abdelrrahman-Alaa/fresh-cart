@@ -2,7 +2,7 @@
 export default function AllOrders() {
   
   return <>
-    <h2>AllOrders</h2>
+    <h2 className="dark:text-gray-100">AllOrders</h2>
   
   </>
 }

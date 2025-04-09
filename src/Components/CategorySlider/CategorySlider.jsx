@@ -1,7 +1,6 @@
 import Slider from "react-slick";
 import useCategories from "../../Hooks/useCategories";
 import { Link } from "react-router-dom";
-import React from "react";
 
 export default function CategorySlider() {
   var settings = {
@@ -61,45 +60,28 @@ export default function CategorySlider() {
     ],
   };
 
-  /*   const [categories, setCategories] = useState([]);
-
-  async function getCategories() {
-    try {
-      let {
-        data: { data },
-      } = await axios.get("https://ecommerce.routemisr.com/api/v1/categories");
-      setCategories(data);
-      // console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  useEffect(() => {
-    getCategories();
-  }, []);
- */
-
   let { data } = useCategories();
 
   return (
-    <>
-      <Link>
-        <Slider {...settings}>
-          {data?.map((category) => {
-            return (
-              <React.Fragment key={category._id}>
+    <div className="py-6 px-4 bg-white dark:bg-gray-900 transition-colors duration-300">
+      <Slider {...settings}>
+        {data?.map((category) => (
+          <div key={category._id} className="px-2">
+            <Link to={`/categories/${category._id}`}>
+              <div className="rounded overflow-hidden shadow-md dark:shadow-lg bg-gray-100 dark:bg-gray-800 transition-colors duration-300">
                 <img
                   className="w-full h-56 object-contain md:object-cover object-top"
                   src={category.image}
                   alt={category.name}
                 />
-                <h3 className="text-center m-2">{category.name}</h3>
-              </React.Fragment>
-            );
-          })}
-        </Slider>
-      </Link>
-    </>
+                <h3 className="text-center m-2 text-gray-800 dark:text-white text-lg font-medium">
+                  {category.name}
+                </h3>
+              </div>
+            </Link>
+          </div>
+        ))}
+      </Slider>
+    </div>
   );
 }

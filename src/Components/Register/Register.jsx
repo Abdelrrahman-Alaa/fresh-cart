@@ -62,7 +62,7 @@ export default function Register() {
 
   return (
     <>
-      <h2 className=" text-center my-6">Register</h2>
+      <h2 className=" text-center my-6 dark:text-gray-100">Register</h2>
 
       <form onSubmit={formik.handleSubmit} className="max-w-md  mx-auto">
         {errMessage && (
