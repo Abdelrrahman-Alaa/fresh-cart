@@ -194,7 +194,15 @@ export default function Navbar() {
                       className=" block rounded-lg  text-base/7 font-medium text-gray-600 dark:text-gray-300
  hover:bg-gray-50 dark:hover:bg-gray-700"
                     >
-                      home
+                      Home
+                    </NavLink>
+                    <NavLink
+                      onClick={() => setIsOpen(false)}
+                      to={"/wishlist"}
+                      className=" block rounded-lg  text-base/7 font-medium text-gray-600 dark:text-gray-300
+ hover:bg-gray-50 dark:hover:bg-gray-700"
+                    >
+                      Wishlist
                     </NavLink>
                     <NavLink
                       onClick={() => setIsOpen(false)}
@@ -202,7 +210,7 @@ export default function Navbar() {
                       className=" block rounded-lg  text-base/7 font-medium text-gray-600 dark:text-gray-300
  hover:bg-gray-50 dark:hover:bg-gray-700"
                     >
-                      cart
+                      Cart
                     </NavLink>
                     <NavLink
                       onClick={() => setIsOpen(false)}
@@ -210,7 +218,7 @@ export default function Navbar() {
                       className=" block rounded-lg  text-base/7 font-medium text-gray-600 dark:text-gray-300
  hover:bg-gray-50 dark:hover:bg-gray-700"
                     >
-                      brands
+                      Brands
                     </NavLink>
                     <NavLink
                       onClick={() => setIsOpen(false)}
@@ -224,7 +232,7 @@ export default function Navbar() {
                       to={"/products"}
                       className=" block rounded-lg  text-base/7 font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
                     >
-                      products
+                      Products
                     </NavLink>
                   </div>
                 )}

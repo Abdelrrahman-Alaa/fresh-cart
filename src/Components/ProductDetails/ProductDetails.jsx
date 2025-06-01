@@ -63,32 +63,45 @@ export default function ProductDetails() {
         <h2>{error.message}</h2>
       ) : (
         product && (
-          <div className="flex items-center p-8 gap-8 ">
-            <div className="w-1/4">
+          <div className="flex flex-col md:flex-row items-center p-4 md:p-8 gap-4 md:gap-8">
+            <div className="w-full md:w-1/4 mb-4 md:mb-0">
               <Slider {...settings}>
                 {product.images.map((image, index) => {
                   return (
-                    <img className="w-full" key={index} src={image} alt="" />
+                    <img
+                      className="w-full h-48 md:h-auto object-contain rounded"
+                      key={index}
+                      src={image}
+                      alt=""
+                    />
                   );
                 })}
               </Slider>
             </div>
-            <div className="w-3/4 ps-4">
-              <h2>{product.title}</h2>
-              <p className="m-2  text-gray-600">{product.description}</p>
-              <p className="m-2 text-main">{product.category.name}</p>
-              <div className="flex m-2 justify-between ">
-                <span>{product.price} EGP</span>
-                <span>
-                  {product.ratingsAverage}{" "}
-                  <i className="fas fa-star mr-2 rating-color "></i>
+            <div className="w-full md:w-3/4 ps-0 md:ps-4">
+              <h2 className="text-lg md:text-2xl font-semibold text-gray-900 dark:text-gray-100">
+                {product.title}
+              </h2>
+              <p className="m-2 text-gray-600 dark:text-gray-300 text-sm md:text-base">
+                {product.description}
+              </p>
+              <p className="m-2 text-main dark:text-blue-300 text-sm md:text-base">
+                {product.category.name}
+              </p>
+              <div className="flex m-2 justify-between items-center">
+                <span className="text-base md:text-lg text-gray-900 dark:text-gray-100">
+                  {product.price} EGP
+                </span>
+                <span className="flex items-center text-yellow-500 dark:text-yellow-400">
+                  {product.ratingsAverage}
+                  <i className="fas fa-star ml-1 rating-color"></i>
                 </span>
               </div>
               <button
                 onClick={() => {
                   addProductToCart(product.id);
                 }}
-                className="btn w-full"
+                className="btn w-full mt-4 dark:bg-green-600 dark:text-white dark:hover:bg-green-700"
               >
                 Add to cart
               </button>

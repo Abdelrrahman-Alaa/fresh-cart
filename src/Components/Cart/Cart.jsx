@@ -19,23 +19,23 @@ export default function Cart() {
   return (
     <>
       {cart ? (
-        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-          <table className="w-full text-sm text-center text-gray-500 dark:text-gray-400">
+        <div className="relative overflow-x-auto shadow-md sm:rounded-lg max-w-full px-1 sm:px-4">
+          <table className="min-w-[400px] w-full text-sm text-center text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
-                <th scope="col" className="px-16 py-3">
+                <th scope="col" className="px-2 sm:px-4 py-3">
                   <span className="sr-only">Image</span>
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="px-2 sm:px-4 py-3">
                   Product
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="px-2 sm:px-4 py-3">
                   Qty
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="px-2 sm:px-4 py-3">
                   Price
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="px-2 sm:px-4 py-3">
                   Action
                 </th>
               </tr>
@@ -46,23 +46,23 @@ export default function Cart() {
                   key={item.product.id}
                   className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
                 >
-                  <td className="p-4">
+                  <td className="p-2 sm:p-4">
                     <img
                       src={item.product.imageCover}
-                      className="w-16 md:w-32 max-w-full max-h-full"
+                      className="w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 object-contain mx-auto"
                       alt={item.product.title}
                     />
                   </td>
-                  <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">
+                  <td className="px-2 sm:px-4 py-2 font-semibold text-gray-900 dark:text-white max-w-[120px] sm:max-w-xs truncate">
                     {item.product.title}
                   </td>
-                  <td className="px-6 py-4">
-                    <div className="flex items-center">
+                  <td className="px-2 sm:px-4 py-2">
+                    <div className="flex items-center justify-center gap-1 sm:gap-2">
                       <button
                         onClick={() =>
                           updateProductCount(item.product.id, item.count - 1)
                         }
-                        className="inline-flex items-center justify-center p-1 me-3 text-sm font-medium h-6 w-6 text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+                        className="inline-flex items-center justify-center p-1 text-xs sm:text-sm font-medium h-6 w-6 text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-2 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
                         type="button"
                       >
                         <span className="sr-only">Quantity button</span>
@@ -82,16 +82,14 @@ export default function Cart() {
                           />
                         </svg>
                       </button>
-                      <div>
-                        <span className="text-center bg-gray-50 w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                          {item.count}
-                        </span>
-                      </div>
+                      <span className="text-center bg-gray-50 w-8 sm:w-14 border border-gray-300 text-gray-900 text-xs sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-1.5 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        {item.count}
+                      </span>
                       <button
                         onClick={() =>
                           updateProductCount(item.product.id, item.count + 1)
                         }
-                        className="inline-flex items-center justify-center h-6 w-6 p-1 ms-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+                        className="inline-flex items-center justify-center h-6 w-6 p-1 text-xs sm:text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-2 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
                         type="button"
                       >
                         <span className="sr-only">Quantity button</span>
@@ -113,14 +111,13 @@ export default function Cart() {
                       </button>
                     </div>
                   </td>
-                  <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">
+                  <td className="px-2 sm:px-4 py-2 font-semibold text-gray-900 dark:text-white">
                     {item.price * item.count} EGP
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-2 sm:px-4 py-2">
                     <button
                       onClick={() => deleteProduct(item.product.id)}
-                      href="#"
-                      className="font-medium bg-transparent hover:bg-transparent text-red-600 dark:text-red-500 hover:underline"
+                      className="font-medium bg-transparent hover:bg-transparent text-red-600 dark:text-red-500 hover:underline focus:ring-1 focus:ring-red-700"
                     >
                       Remove
                     </button>
@@ -129,16 +126,19 @@ export default function Cart() {
               ))}
             </tbody>
             <tfoot>
-              <tr className=" font-semibold text-xl text-gray-900 dark:text-white">
-                <th scope="row" className="px-6 py-8 ">
+              <tr className="font-semibold text-base sm:text-xl text-gray-900 dark:text-white">
+                <th scope="row" className="px-2 sm:px-6 py-4 sm:py-8 ">
                   Total
                 </th>
-                <td className="px-6 py-3"></td>
-                <td className="px-6 py-3"></td>
-                <td className=" py-3  ">{cart.data.totalCartPrice} EGP</td>
-                <td className="px-6 py-3">
+                <td className="px-2 sm:px-6 py-3"></td>
+                <td className="px-2 sm:px-6 py-3"></td>
+                <td className="py-3">{cart.data.totalCartPrice} EGP</td>
+                <td className="px-2 sm:px-6 py-3">
                   <Link onClick={handleCheckout}>
-                    <button type="button" className="font-normal text-lg ">
+                    <button
+                      type="button"
+                      className="font-normal text-base sm:text-lg "
+                    >
                       Checkout
                     </button>
                   </Link>
