@@ -52,7 +52,40 @@ export default function Login() {
 
   return (
     <>
-      <h2 className="dark:text-gray-100 text-center my-12">Login</h2>
+      <h2 className="dark:text-gray-100 text-center my-8">Login</h2>
+
+      {/* Demo Credentials Card */}
+      <div className="max-w-md mx-auto mb-8">
+        <div className="flex items-center gap-3 px-5 py-4 rounded-xl shadow-md bg-green-50 border border-green-200 dark:bg-gray-800 dark:border-green-700">
+          <div className="text-3xl text-green-600 dark:text-green-400">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="w-8 h-8"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M16.5 10.5V6.75A2.25 2.25 0 0014.25 4.5h-4.5A2.25 2.25 0 007.5 6.75v10.5A2.25 2.25 0 009.75 19.5h4.5a2.25 2.25 0 002.25-2.25V13.5m-6-3h7.5m0 0l-2.25-2.25M17.25 10.5l-2.25 2.25"
+              />
+            </svg>
+          </div>
+          <div>
+            <div className="font-semibold text-green-700 dark:text-green-300 mb-1 flex items-center gap-1">
+              <span>Demo Login</span>
+              <span className="text-base">🔑</span>
+            </div>
+            <div className="text-sm text-gray-700 dark:text-gray-200">
+              <span className="font-medium">Email:</span> demo_test@demo.com
+              <br />
+              <span className="font-medium">Password:</span> Test@123
+            </div>
+          </div>
+        </div>
+      </div>
 
       <form onSubmit={handleSubmit} className="max-w-md mx-auto mt-12">
         {errMessage && (
