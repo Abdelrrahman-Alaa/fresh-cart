@@ -2,6 +2,15 @@
 
 Fresh Cart is a modern e-commerce web application where users can browse, search, and purchase products across various categories such as food, personal care, household, bakery, and more.
 
+## Live Demo
+
+[View the live demo here](https://fresh-cart-two-black.vercel.app/)
+
+**Demo Login Credentials:**
+
+- **Email:** demo_test@demo.com
+- **Password:** Test@123
+
 ## Features
 
 - Browse products by category and brand
@@ -34,13 +43,6 @@ Fresh Cart is a modern e-commerce web application where users can browse, search
    npm run dev
    ```
 4. Open [http://localhost:5173](http://localhost:5173) in your browser.
-
-## Demo Login
-
-You can use the following credentials to log in as a demo user:
-
-- **Email:** demo_test@demo.com
-- **Password:** Test@123
 
 ## Tech Stack
 
